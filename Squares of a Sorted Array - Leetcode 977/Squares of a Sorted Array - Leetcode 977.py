@@ -1,3 +1,44 @@
+# Brute Force Solution
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        for i in range(n):
+            nums[i] = nums[i] ** 2
+        
+        nums.sort()
+
+        return nums
+
+# Time: O(n log n)
+# Space: O(1)
+
+# Optimal Solution for Bootcamp
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        L, R = 0, n-1
+        result = [0] * n
+
+        for i in range(n):
+            nums[i] = nums[i] ** 2
+
+        j = n-1
+        while L <= R:
+            if nums[L] > nums[R]:
+                result[j] = nums[L]
+                L += 1
+            else:
+                result[j] = nums[R]
+                R -= 1
+
+            j -= 1
+        
+        return result
+# Time: O(n)
+# Space: O(n)
+
+
+# Optimal Solution in YT Video
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
         left = 0
@@ -17,4 +58,4 @@ class Solution:
         return result
 
 # Time Complexity: O(n)
-# Space Complexity: O(1)
+# Space Complexity: O(n)

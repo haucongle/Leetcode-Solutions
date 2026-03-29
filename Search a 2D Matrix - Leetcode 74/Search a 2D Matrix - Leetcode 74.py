@@ -1,3 +1,28 @@
+# Brute Force Solution
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        for row in matrix:
+            if target in row:
+                return True
+        
+        return False
+# Time: O(m * n)
+# Space: O(1)
+
+# Brute Force Solution With (i, j) indices
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m, n = len(matrix), len(matrix[0])
+        for i in range(m):
+            for j in range(n):
+                if target == matrix[i][j]:
+                    return True
+        
+        return False
+# Time: O(m * n)
+# Space: O(1)
+
+# Optimal Solution
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         m = len(matrix)
@@ -7,17 +32,17 @@ class Solution:
         r = t - 1
 
         while l <= r:
-            m = (l + r) // 2
-            i = m // n
-            j = m % n
-            mid_num = matrix[i][j]
+            mid = (l + r) // 2
+            mid_i = mid // n
+            mid_j = mid % n
+            mid_num = matrix[mid_i][mid_j]
 
             if target == mid_num:
                 return True
             elif target < mid_num:
-                r = m - 1
+                r = mid - 1
             else:
-                l = m + 1
+                l = mid + 1
 
         return False
 
